@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.ModuleConstants;
 
-public class modswerve {
+public class modswerve{
 
     private final CANSparkMax driveMotor;
     private final CANSparkMax turningMotor;
@@ -40,7 +40,7 @@ public class modswerve {
         turningMotor = new CANSparkMax(turningMotorId, MotorType.kBrushless);
 
         driveMotor.setInverted(driveMotorReversed);
-       turningMotor.setInverted(turningMotorReversed);
+        turningMotor.setInverted(turningMotorReversed);
 
         driveEncoder = driveMotor.getEncoder();
         turningEncoder = turningMotor.getEncoder();
@@ -58,9 +58,12 @@ public class modswerve {
         resetEncoders();
     }
 
-     
     public double getDrivePosition() {
-        return driveEncoder.getPosition();
+        double position;
+        position = driveEncoder.getPosition();
+        //position = driveMotor.getEncoder().getPosition();
+        return position;
+
     }
 
     public double getTurningPosition() {
@@ -91,8 +94,6 @@ public class modswerve {
         return new SwerveModuleState(getDriveVelocity(), new Rotation2d(getTurningPosition()));
     } 
     
-  
-  
     public void setDesiredState(SwerveModuleState state) {
         if (Math.abs(state.speedMetersPerSecond) < 0.001) {
             stop();
@@ -110,7 +111,9 @@ public class modswerve {
     }
 
     public SwerveModulePosition gSwerveModulePosition() {
-        
-        throw new UnsupportedOperationException("Unimplemented method 'gSwerveModulePosition'");
+        Rotation2d rot = new Rotation2d(turningEncoder.getPosition());
+        return new SwerveModulePosition(getDrivePosition(), rot);
     }
+        
+ 
 }

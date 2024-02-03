@@ -10,11 +10,11 @@ import frc.robot.Constants.OIConstants;
 import frc.robot.subsystems.subswerve;
 
 public class joy extends Command {
-
-    private final subswerve swerveSubsystem;
-    private final Supplier<Double> xSpdFunction, ySpdFunction, turningSpdFunction;
-    private final Supplier<Boolean> fieldOrientedFunction;
-    private final SlewRateLimiter xLimiter, yLimiter, turningLimiter;
+ 
+    subswerve swerveSubsystem;
+    Supplier<Double> xSpdFunction, ySpdFunction, turningSpdFunction;
+    Supplier<Boolean> fieldOrientedFunction;
+    SlewRateLimiter xLimiter, yLimiter, turningLimiter;
 
     public joy(subswerve swerveSubsystem,
             Supplier<Double> xSpdFunction, Supplier<Double> ySpdFunction, Supplier<Double> turningSpdFunction,
@@ -24,9 +24,12 @@ public class joy extends Command {
         this.ySpdFunction = ySpdFunction;
         this.turningSpdFunction = turningSpdFunction;
         this.fieldOrientedFunction = fieldOrientedFunction;
+
         this.xLimiter = new SlewRateLimiter(DriveConstants.kTeleDriveMaxAccelerationUnitsPerSecond);
         this.yLimiter = new SlewRateLimiter(DriveConstants.kTeleDriveMaxAccelerationUnitsPerSecond);
         this.turningLimiter = new SlewRateLimiter(DriveConstants.kTeleDriveMaxAngularAccelerationUnitsPerSecond);
+
+
         addRequirements(swerveSubsystem);
     }
 
@@ -36,6 +39,7 @@ public class joy extends Command {
 
     @Override
     public void execute() {
+
         // 1. Get real-time joystick inputs
         double xSpeed = xSpdFunction.get();
         double ySpeed = ySpdFunction.get();
@@ -45,6 +49,7 @@ public class joy extends Command {
         xSpeed = Math.abs(xSpeed) > OIConstants.kDeadband ? xSpeed : 0.0;
         ySpeed = Math.abs(ySpeed) > OIConstants.kDeadband ? ySpeed : 0.0;
         turningSpeed = Math.abs(turningSpeed) > OIConstants.kDeadband ? turningSpeed : 0.0;
+
 
         // 3. Make the driving smoother
         xSpeed = xLimiter.calculate(xSpeed) * DriveConstants.kTeleDriveMaxSpeedMetersPerSecond;
@@ -79,5 +84,7 @@ public class joy extends Command {
     public boolean isFinished() {
         return false;
     }
+
+
 
 }

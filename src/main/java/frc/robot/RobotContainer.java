@@ -4,7 +4,7 @@ import java.util.List;
 
 
 
-import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.geometry.Pose2d;
@@ -28,24 +28,23 @@ public class RobotContainer {
 
     private final subswerve swerveSubsystem = new subswerve();
 
-    private final Joystick driverJoytick = new Joystick(OIConstants.kDriverControllerPort);
+    private final XboxController driverJoystick = new XboxController(OIConstants.kDriverControllerPort);
 
-    public RobotContainer() {
+    public RobotContainer() { 
         swerveSubsystem.setDefaultCommand(new joy(
                 swerveSubsystem,
-                () -> -driverJoytick.getRawAxis(OIConstants.kDriverYAxis),
-                () -> driverJoytick.getRawAxis(OIConstants.kDriverXAxis),
-                () -> driverJoytick.getRawAxis(OIConstants.kDriverRotAxis),
-                () -> !driverJoytick.getRawButton(OIConstants.kDriverFieldOrientedButtonIdx)));
+                () -> -driverJoystick.getRawAxis(OIConstants.kDriverYAxis),
+                () -> driverJoystick.getRawAxis(OIConstants.kDriverXAxis),
+                () -> driverJoystick.getRawAxis(OIConstants.kDriverRotAxis),
+                () -> !driverJoystick.getRawButton(OIConstants.kDriverFieldOrientedButtonIdx)));
 
         configureButtonBindings();
     }
 
     private void configureButtonBindings() {
-        new JoystickButton(driverJoytick, 2).onTrue(new InstantCommand(() -> swerveSubsystem.zeroHeading()) );
+        new JoystickButton(driverJoystick, 1).onTrue(new InstantCommand(() -> swerveSubsystem.zeroHeading()) );
     }
 
-    
     public Command getAutonomousCommand() {
         // 1. Create trajectory settings
         TrajectoryConfig trajectoryConfig = new TrajectoryConfig(
@@ -88,5 +87,6 @@ public class RobotContainer {
                 swerveControllerCommand,
                 new InstantCommand(() -> swerveSubsystem.stopModules()));
     } 
-
 }
+
+

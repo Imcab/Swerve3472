@@ -7,10 +7,7 @@ package frc.robot;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
-//import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.math.util.Units;
-
-
 
 public final class Constants {
   public static final class ModuleConstants {
@@ -26,29 +23,29 @@ public final class Constants {
 
   public static final class DriveConstants {
 
-    public static final double kTrackWidth = Units.inchesToMeters(21);
+    public static final double kTrackWidth = Units.inchesToMeters(18.89147); //23.25189
     // Distance between right and left wheels
-    public static final double kWheelBase = Units.inchesToMeters(25.5);
+    public static final double kWheelBase = Units.inchesToMeters(23.25189); //18.89147
     // Distance between front and back wheels
 
     //Plano cartesiano con respecto al centro del robot
     public static final SwerveDriveKinematics kDriveKinematics = new SwerveDriveKinematics(
-            new Translation2d(kWheelBase / 2, -kTrackWidth / 2),
-            new Translation2d(kWheelBase / 2, kTrackWidth / 2),
-            new Translation2d(-kWheelBase / 2, -kTrackWidth / 2),
-            new Translation2d(-kWheelBase / 2, kTrackWidth / 2));
+            new Translation2d(-kWheelBase / 2, -kTrackWidth / 2), //front left (back left)   
+            new Translation2d(-kWheelBase / 2, kTrackWidth / 2),  //front right (es front left)
+            new Translation2d(kWheelBase / 2, -kTrackWidth / 2), //back left (back right)
+            new Translation2d(kWheelBase / 2, kTrackWidth / 2)); //back right (front right)
 
 
-            //Mover a CAN
-    public static final int kFrontLeftDriveMotorPort = 8;
-    public static final int kBackLeftDriveMotorPort = 4;
-    public static final int kFrontRightDriveMotorPort = 6;
-    public static final int kBackRightDriveMotorPort = 2;
+        //Mover a CAN
+    public static final int kFrontLeftDriveMotorPort = 2;
+    public static final int kBackLeftDriveMotorPort = 7;
+    public static final int kFrontRightDriveMotorPort = 3;
+    public static final int kBackRightDriveMotorPort = 6;
 
-    public static final int kFrontLeftTurningMotorPort = 7;
-    public static final int kBackLeftTurningMotorPort = 3;
-    public static final int kFrontRightTurningMotorPort = 5;
-    public static final int kBackRightTurningMotorPort = 1;
+    public static final int kFrontLeftTurningMotorPort = 1;
+    public static final int kBackLeftTurningMotorPort = 8;
+    public static final int kFrontRightTurningMotorPort = 4;
+    public static final int kBackRightTurningMotorPort = 5;
 
     //Uno del drive otro del turning
     public static final boolean kFrontLeftTurningEncoderReversed = true;
@@ -64,9 +61,9 @@ public final class Constants {
 
 //MOVER LOS ENCODERS
 
-    public static final int kFrontLeftDriveAbsoluteEncoderPort = 0;
+    public static final int kFrontLeftDriveAbsoluteEncoderPort = 1;
     public static final int kBackLeftDriveAbsoluteEncoderPort = 2;
-    public static final int kFrontRightDriveAbsoluteEncoderPort = 1;
+    public static final int kFrontRightDriveAbsoluteEncoderPort = 0;
     public static final int kBackRightDriveAbsoluteEncoderPort = 3;
 
     public static final boolean kFrontLeftDriveAbsoluteEncoderReversed = false;
@@ -76,10 +73,10 @@ public final class Constants {
     
 //Dependiendo de su posición, va a poner estos valores---- SE CAMBIA
  
-    public static final double kFrontLeftDriveAbsoluteEncoderOffsetRad = -0.254;
-    public static final double kBackLeftDriveAbsoluteEncoderOffsetRad = -1.252;
-    public static final double kFrontRightDriveAbsoluteEncoderOffsetRad = -1.816;
-    public static final double kBackRightDriveAbsoluteEncoderOffsetRad = -4.811;
+    public static final double kFrontLeftDriveAbsoluteEncoderOffsetRad = -4.0236;
+    public static final double kBackLeftDriveAbsoluteEncoderOffsetRad = -5.8766;
+    public static final double kFrontRightDriveAbsoluteEncoderOffsetRad = -1.1520;
+    public static final double kBackRightDriveAbsoluteEncoderOffsetRad = -3.0971;
     
 
     public static final double kPhysicalMaxSpeedMetersPerSecond = 5;
@@ -88,8 +85,8 @@ public final class Constants {
     public static final double kTeleDriveMaxSpeedMetersPerSecond = kPhysicalMaxSpeedMetersPerSecond / 4;
     public static final double kTeleDriveMaxAngularSpeedRadiansPerSecond = //
             kPhysicalMaxAngularSpeedRadiansPerSecond / 4;
-    public static final double kTeleDriveMaxAccelerationUnitsPerSecond = 3;
-    public static final double kTeleDriveMaxAngularAccelerationUnitsPerSecond = 3;
+    public static final double kTeleDriveMaxAccelerationUnitsPerSecond = 0.5;
+    public static final double kTeleDriveMaxAngularAccelerationUnitsPerSecond = 0.5;
 }
   public static final class AutoConstants {
         public static final double kMaxSpeedMetersPerSecond = DriveConstants.kPhysicalMaxSpeedMetersPerSecond / 4;
