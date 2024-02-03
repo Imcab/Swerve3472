@@ -45,6 +45,7 @@ public class RobotContainer {
         new JoystickButton(driverJoytick, 2).onTrue(new InstantCommand(() -> swerveSubsystem.zeroHeading()) );
     }
 
+    
     public Command getAutonomousCommand() {
         // 1. Create trajectory settings
         TrajectoryConfig trajectoryConfig = new TrajectoryConfig(
@@ -69,6 +70,7 @@ public class RobotContainer {
         thetaController.enableContinuousInput(-Math.PI, Math.PI);
 
         // 4. Construct command to follow trajectory
+        
         SwerveControllerCommand swerveControllerCommand = new SwerveControllerCommand(
                 trajectory,
                 swerveSubsystem::getPose,
@@ -80,10 +82,11 @@ public class RobotContainer {
                 swerveSubsystem);
 
         // 5. Add some init and wrap-up, and return everything
+        
         return new SequentialCommandGroup(
                 new InstantCommand(() -> swerveSubsystem.resetOdometry(trajectory.getInitialPose())),
                 swerveControllerCommand,
                 new InstantCommand(() -> swerveSubsystem.stopModules()));
-    }
+    } 
 
 }

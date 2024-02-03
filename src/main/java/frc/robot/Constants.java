@@ -41,14 +41,14 @@ public final class Constants {
 
             //Mover a CAN
     public static final int kFrontLeftDriveMotorPort = 8;
-    public static final int kBackLeftDriveMotorPort = 2;
+    public static final int kBackLeftDriveMotorPort = 4;
     public static final int kFrontRightDriveMotorPort = 6;
-    public static final int kBackRightDriveMotorPort = 4;
+    public static final int kBackRightDriveMotorPort = 2;
 
     public static final int kFrontLeftTurningMotorPort = 7;
-    public static final int kBackLeftTurningMotorPort = 1;
+    public static final int kBackLeftTurningMotorPort = 3;
     public static final int kFrontRightTurningMotorPort = 5;
-    public static final int kBackRightTurningMotorPort = 3;
+    public static final int kBackRightTurningMotorPort = 1;
 
     //Uno del drive otro del turning
     public static final boolean kFrontLeftTurningEncoderReversed = true;
@@ -63,6 +63,7 @@ public final class Constants {
 
 
 //MOVER LOS ENCODERS
+
     public static final int kFrontLeftDriveAbsoluteEncoderPort = 0;
     public static final int kBackLeftDriveAbsoluteEncoderPort = 2;
     public static final int kFrontRightDriveAbsoluteEncoderPort = 1;
@@ -71,13 +72,15 @@ public final class Constants {
     public static final boolean kFrontLeftDriveAbsoluteEncoderReversed = false;
     public static final boolean kBackLeftDriveAbsoluteEncoderReversed = false;
     public static final boolean kFrontRightDriveAbsoluteEncoderReversed = false;
-    public static final boolean kBackRightDriveAbsoluteEncoderReversed = false;
+    public static final boolean kBackRightDriveAbsoluteEncoderReversed = false; 
     
 //Dependiendo de su posición, va a poner estos valores---- SE CAMBIA
+ 
     public static final double kFrontLeftDriveAbsoluteEncoderOffsetRad = -0.254;
     public static final double kBackLeftDriveAbsoluteEncoderOffsetRad = -1.252;
     public static final double kFrontRightDriveAbsoluteEncoderOffsetRad = -1.816;
     public static final double kBackRightDriveAbsoluteEncoderOffsetRad = -4.811;
+    
 
     public static final double kPhysicalMaxSpeedMetersPerSecond = 5;
     public static final double kPhysicalMaxAngularSpeedRadiansPerSecond = 2 * 2 * Math.PI;

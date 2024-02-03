@@ -16,45 +16,49 @@ public class subswerve extends SubsystemBase {
 
 
 
-    public final modswerve frontLeft = new modswerve(
+  /*   public final modswerve frontLeft = new modswerve(
             DriveConstants.kFrontLeftDriveMotorPort,
             DriveConstants.kFrontLeftTurningMotorPort,
+            
             DriveConstants.kFrontLeftDriveEncoderReversed,
             DriveConstants.kFrontLeftTurningEncoderReversed,
             DriveConstants.kFrontLeftDriveAbsoluteEncoderPort,
             DriveConstants.kFrontLeftDriveAbsoluteEncoderOffsetRad,
-            DriveConstants.kFrontLeftDriveAbsoluteEncoderReversed);
+            DriveConstants.kFrontLeftDriveAbsoluteEncoderReversed); */
 
-    public final modswerve frontRight = new modswerve(
+   /*  public final modswerve frontRight = new modswerve(
             DriveConstants.kFrontRightDriveMotorPort,
             DriveConstants.kFrontRightTurningMotorPort,
+            
             DriveConstants.kFrontRightDriveEncoderReversed,
             DriveConstants.kFrontRightTurningEncoderReversed,
             DriveConstants.kFrontRightDriveAbsoluteEncoderPort,
             DriveConstants.kFrontRightDriveAbsoluteEncoderOffsetRad,
-            DriveConstants.kFrontRightDriveAbsoluteEncoderReversed);
+            DriveConstants.kFrontRightDriveAbsoluteEncoderReversed); */
 
-    public final modswerve backLeft = new modswerve(
+  /*  public final modswerve backLeft = new modswerve(
             DriveConstants.kBackLeftDriveMotorPort,
             DriveConstants.kBackLeftTurningMotorPort,
+            
             DriveConstants.kBackLeftDriveEncoderReversed,
             DriveConstants.kBackLeftTurningEncoderReversed,
             DriveConstants.kBackLeftDriveAbsoluteEncoderPort,
             DriveConstants.kBackLeftDriveAbsoluteEncoderOffsetRad,
-            DriveConstants.kBackLeftDriveAbsoluteEncoderReversed);
+            DriveConstants.kBackLeftDriveAbsoluteEncoderReversed); */
 
     public final modswerve backRight = new modswerve(
             DriveConstants.kBackRightDriveMotorPort,
             DriveConstants.kBackRightTurningMotorPort,
+            
             DriveConstants.kBackRightDriveEncoderReversed,
             DriveConstants.kBackRightTurningEncoderReversed,
             DriveConstants.kBackRightDriveAbsoluteEncoderPort,
             DriveConstants.kBackRightDriveAbsoluteEncoderOffsetRad,
-            DriveConstants.kBackRightDriveAbsoluteEncoderReversed);
+            DriveConstants.kBackRightDriveAbsoluteEncoderReversed);  
 
     public SwerveModulePosition[] SwerveModulePosition(){
         return new SwerveModulePosition[]{
-            frontLeft.gSwerveModulePosition(), frontRight.gSwerveModulePosition(), backLeft.gSwerveModulePosition(), backRight.gSwerveModulePosition(),
+            /*frontLeft.gSwerveModulePosition() frontRight.gSwerveModulePosition(), backLeft.gSwerveModulePosition(),*/ backRight.gSwerveModulePosition(),
                 };
             }    
 
@@ -98,10 +102,10 @@ public class subswerve extends SubsystemBase {
     @Override
     public void periodic() {
         
-        positions[0] = frontLeft.gSwerveModulePosition();
-        positions[1] = frontRight.gSwerveModulePosition();
-        positions[2] = backLeft.gSwerveModulePosition();
-        positions[3] = backRight.gSwerveModulePosition();
+      //  positions[0] = frontLeft.gSwerveModulePosition();
+        // positions[1] = frontRight.gSwerveModulePosition();
+       // positions[2] = backLeft.gSwerveModulePosition();
+        positions[3] = backRight.gSwerveModulePosition(); 
 
         odometer.update(getRotation2d(), positions);
         
@@ -110,19 +114,20 @@ public class subswerve extends SubsystemBase {
     }
 
     public void stopModules() {
-        frontLeft.stop();
-        frontRight.stop();
-        backLeft.stop();
-        backRight.stop();
+   //     frontLeft.stop();
+     //  frontRight.stop();
+       // backLeft.stop();
+        backRight.stop();  
     }
 
+    
     public void setModuleStates(SwerveModuleState[] desiredStates) {
       SwerveDriveKinematics.desaturateWheelSpeeds(desiredStates, DriveConstants.kPhysicalMaxSpeedMetersPerSecond);
-        frontLeft.setDesiredState(desiredStates[0]);
-        frontRight.setDesiredState(desiredStates[1]);
-        backLeft.setDesiredState(desiredStates[2]);
-       backRight.setDesiredState(desiredStates[3]);
-   }
+        //frontLeft.setDesiredState(desiredStates[0]);
+      //  frontRight.setDesiredState(desiredStates[1]);
+    //    backLeft.setDesiredState(desiredStates[2]);
+       backRight.setDesiredState(desiredStates[3]);  
+   } 
 
     
 }

@@ -27,11 +27,12 @@ public class modswerve {
     private final boolean absoluteEncoderReversed;
     private final double absoluteEncoderOffsetRad;
 
-    public modswerve(int driveMotorId, int turningMotorId, boolean driveMotorReversed, boolean turningMotorReversed,
+    public modswerve(int driveMotorId, int turningMotorId,
+     boolean driveMotorReversed, boolean turningMotorReversed,
             int absoluteEncoderId, double absoluteEncoderOffset, boolean absoluteEncoderReversed) {
 
                 //Creemos... objetoswerve.acción absolute encoder tiene que ser igual a la constante
-        this.absoluteEncoderOffsetRad = absoluteEncoderOffset;
+         this.absoluteEncoderOffsetRad = absoluteEncoderOffset;
         this.absoluteEncoderReversed = absoluteEncoderReversed;
         absoluteEncoder = new AnalogInput(absoluteEncoderId);
 
@@ -39,10 +40,12 @@ public class modswerve {
         turningMotor = new CANSparkMax(turningMotorId, MotorType.kBrushless);
 
         driveMotor.setInverted(driveMotorReversed);
-        turningMotor.setInverted(turningMotorReversed);
+       turningMotor.setInverted(turningMotorReversed);
 
         driveEncoder = driveMotor.getEncoder();
         turningEncoder = turningMotor.getEncoder();
+
+         
 
         driveEncoder.setPositionConversionFactor(ModuleConstants.kDriveEncoderRot2Meter);
         driveEncoder.setVelocityConversionFactor(ModuleConstants.kDriveEncoderRPM2MeterPerSec);
@@ -55,6 +58,7 @@ public class modswerve {
         resetEncoders();
     }
 
+     
     public double getDrivePosition() {
         return driveEncoder.getPosition();
     }
@@ -85,7 +89,7 @@ public class modswerve {
 
     public SwerveModuleState getState() {
         return new SwerveModuleState(getDriveVelocity(), new Rotation2d(getTurningPosition()));
-    }
+    } 
     
   
   
@@ -106,7 +110,7 @@ public class modswerve {
     }
 
     public SwerveModulePosition gSwerveModulePosition() {
-        // TODO Auto-generated method stub
+        
         throw new UnsupportedOperationException("Unimplemented method 'gSwerveModulePosition'");
     }
 }
